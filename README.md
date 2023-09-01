@@ -7,7 +7,7 @@ USE DBPRUEBAS
 GO
 
 --(1) TABLA ROL
-if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'ROL')
+
 create table ROL(
 IdRol int primary key identity(1,1),
 Descripcion varchar(60),
@@ -18,7 +18,6 @@ FechaRegistro datetime default getdate()
 GO
 
 --(2) TABLA TIENDA
-if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'TIENDA')
 create table TIENDA(
 IdTienda int primary key identity(1,1),
 Nombre varchar(60),
@@ -32,7 +31,6 @@ FechaRegistro datetime default getdate()
 GO
 
 --(3) TABLA MENU
-if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'MENU')
 create table MENU(
 IdMenu int primary key identity(1,1),
 Nombre varchar(60),
@@ -44,7 +42,6 @@ FechaRegistro datetime default getdate()
 GO
 
 --(4) TABLA SUBMENU
-if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'SUBMENU')
 create table SUBMENU(
 IdSubMenu int primary key identity(1,1),
 IdMenu int references MENU(IdMenu),
@@ -57,7 +54,6 @@ FechaRegistro datetime default getdate()
 GO
 
 --(5) TABLA USUARIO
-if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'USUARIO')
 create table USUARIO(
 IdUsuario int primary key identity(1,1),
 Nombres varchar(60),
@@ -74,7 +70,6 @@ FechaRegistro datetime default getdate()
 GO
 
 --(6) TABLA PERMISOS
-if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'PERMISOS')
 create table PERMISOS(
 IdPermisos int primary key identity(1,1),
 IdRol int references ROL(IdRol),
@@ -85,7 +80,6 @@ FechaRegistro datetime default getdate()
 
 go
 --(7) TABLA PROVEEDOR
-if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'PROVEEDOR')
 create table PROVEEDOR(
 IdProveedor int primary key identity(1,1),
 RUC varchar(50),
@@ -100,7 +94,6 @@ FechaRegistro datetime default getdate()
 go
 
 --(8) TABLA CATEGORIA
-if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'CATEGORIA')
 create table CATEGORIA(
 IdCategoria int primary key identity(1,1),
 Descripcion varchar(100),
@@ -112,7 +105,6 @@ go
 
 
 --(8) TABLA PRODUCTO
-if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'PRODUCTO')
 create table PRODUCTO(
 IdProducto int primary key identity(1,1),
 Codigo varchar(100),
@@ -128,7 +120,6 @@ go
 
 
 --(8) TABLA PRODUCTO_TIENDA
-if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'PRODUCTO_TIENDA')
 create table PRODUCTO_TIENDA(
 IdProductoTienda int primary key identity(1,1),
 IdProducto int references PRODUCTO(IdProducto),
@@ -144,7 +135,6 @@ FechaRegistro datetime default getdate()
 go
 
 --(9) TABLA COMPRA
-if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'COMPRA')
 create table COMPRA(
 IdCompra int primary key identity(1,1),
 IdUsuario int references USUARIO(IdUsuario),
@@ -159,7 +149,6 @@ FechaRegistro datetime default getdate()
 go
 
 --(10) TABLA DETALLE_COMPRA
-if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'DETALLE_COMPRA')
 create table DETALLE_COMPRA(
 IdDetalleCompra int primary key identity(1,1),
 IdCompra int references COMPRA(IdCompra),
@@ -175,7 +164,6 @@ FechaRegistro datetime default getdate()
 go
 
 -- (10) TABLA CLIENTE
-if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'CLIENTE')
 create table CLIENTE(
 IdCliente int primary key identity(1,1),
 TipoDocumento varchar(50),
@@ -190,7 +178,6 @@ FechaRegistro datetime default getdate()
 go 
 
 -- (11) TABLA VENTA
-if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'VENTA')
 create table VENTA(
 IdVenta int primary key identity(1,1),
 Codigo varchar(100),
@@ -212,7 +199,6 @@ go
 
 
 -- (12) TABLA DETALLE_VENTA
-if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'DETALLE_VENTA')
 create table DETALLE_VENTA(
 IdDetalleVenta int primary key identity(1,1),
 IdVenta int references VENTA(IdVenta),
